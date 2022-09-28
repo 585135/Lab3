@@ -1,6 +1,11 @@
 
 import MouseLookController from './MouseLookController.js';
-import { Renderer, Scene, Node, Mesh, Primitive, BasicMaterial, CubeMapMaterial, PerspectiveCamera, vec3 } from '../lib/engine/index.js';
+import { Light, Renderer, Scene, Node, Mesh, Primitive, BasicMaterial, CubeMapMaterial, PerspectiveCamera, vec3, vec4 } from '../lib/engine/index.js';
+
+
+
+
+
 
 // Create a Renderer and append the canvas element to the DOM.
 let renderer = new Renderer(window.innerWidth, window.innerHeight);
@@ -60,6 +65,12 @@ const marsPrimitive = Primitive.from(sunPrimitive, marsMaterial);
 const mercuryPrimitive = Primitive.from(sunPrimitive, mercuryMaterial);
 const saturnPrimitive = Primitive.from(sunPrimitive, saturnMaterial);
 
+const light = new Light({
+    diffuse: vec4.fromValues(134/255, 31/255, 42/255, 1.0),
+    specular: vec4.fromValues(0.4, 0.4, 0.4, 1.0)
+});
+
+sun.add(light);
 const moonPrimitive = Primitive.from(sunPrimitive, moonMaterial);
 
 // Next we create a Node that represents the Earths orbit.
