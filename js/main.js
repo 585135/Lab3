@@ -1,6 +1,8 @@
 
 import MouseLookController from './MouseLookController.js';
 import { Light, Renderer, Scene, Node, Mesh, Primitive, BasicMaterial, CubeMapMaterial, PerspectiveCamera, vec3, vec4 } from '../lib/engine/index.js';
+import PhongMaterial from "../materials/PhongMaterial.js";
+
 
 
 
@@ -21,19 +23,24 @@ const sunMaterial = new BasicMaterial({
     map: renderer.loadTexture('resources/sun.jpg')
 });
 
-const earthMaterial = new BasicMaterial({
+const earthMaterial = new PhongMaterial({
+    shininess: 30,
     map: renderer.loadTexture('resources/earth_daymap.jpg')
 });
-const marsMaterial = new BasicMaterial({
+const marsMaterial = new PhongMaterial({
+    shininess: 30,
     map: renderer.loadTexture('resources/mars_daymap.jpg')
 });
-const mercuryMaterial = new BasicMaterial({
+const mercuryMaterial = new PhongMaterial({
+    shininess: 30,
     map: renderer.loadTexture('resources/mercury_daymap.jpg')
 });
-const saturnMaterial = new BasicMaterial({
+const saturnMaterial = new PhongMaterial({
+    shininess: 30,
     map: renderer.loadTexture('resources/saturn_daymap.jpg')
 });
-const moonMaterial = new BasicMaterial({
+const moonMaterial = new PhongMaterial({
+    shininess: 30,
     map: renderer.loadTexture('resources/moon.jpg')
 });
 // Get more textures here:
@@ -66,8 +73,8 @@ const mercuryPrimitive = Primitive.from(sunPrimitive, mercuryMaterial);
 const saturnPrimitive = Primitive.from(sunPrimitive, saturnMaterial);
 
 const light = new Light({
-    diffuse: vec4.fromValues(134/255, 31/255, 42/255, 1.0),
-    specular: vec4.fromValues(0.4, 0.4, 0.4, 1.0)
+    diffuse: vec4.fromValues(255/255, 255/255, 255/255, 1.0),
+    specular: vec4.fromValues(0.2, 0.2, 0.2, 1.0)
 });
 
 sun.add(light);
@@ -124,7 +131,7 @@ mars.setScale(0.051, 0.051, 0.051);
 mercury.setScale(0.031,0.031,0.031);
 saturn.setScale(0.35,0.35,0.35);
 
-moon.setScale(0.0091, 0.0091, 0.0091);
+moon.setScale(0.025, 0.025, 0.025);
 
 
 // We create a Node representing movement, in order to decouple camera rotation.
