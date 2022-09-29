@@ -59,14 +59,23 @@ precision mediump float;
 in vec4 vColor;
 in vec2 vTexCoord;
 out vec4 fColor;
+uniform float u_time;
 
 uniform sampler2D uTex0;
 uniform sampler2D uTex1;
 
+
+
 void
 main()
 {
-    fColor = vColor*(texture(uTex0, vTexCoord)*texture(uTex1, vTexCoord));
+    vec4 texel0, texel1;
+    texel0 = texture(uTex0, vTexCoord);
+    texel1 = texture(uTex1, vTexCoord);
+
+    fColor = mix(texel0, texel1, vColor);
+     //fColor = vColor*texel0;
+
 
 }
 </script>
